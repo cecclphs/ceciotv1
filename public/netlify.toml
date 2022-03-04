@@ -1,0 +1,13 @@
+[[redirects]]
+  from = "/controls"
+  to = "/"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}

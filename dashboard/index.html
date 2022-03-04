@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Makerspace Dashboard</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" initial-scale="1"/>
+        <meta charset="utf-8"/>
+        <link rel="icon" href="cec-logo_overlay2.png"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="jquery.csv.min.js"></script>
+        <script defer src="index.js"></script>
+        <link rel="stylesheet" href="index.css"/>
+    </head>
+    <body class="body">
+      <div class="menu-overlay" onClick="closeOverlay()">
+            <div class="menu-box" onClick="console.log('nope')">
+                <div class="menu-h3">Editing User Kang Yi Te</div>
+            </div>
+        </div>
+        <div class="contents">
+          <div class="header">
+              <div class="title-text">CEC Dashboard</div>
+          </div>
+            <div class="description">
+              <div class="description-grid hidden">
+                <div class="input-field hovered col-3 ro-4 hidden" id="MasterControl">
+                  <div class="description-title-text">Master Control</div>
+                  <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="all_lights" onClick="allSwitch(0)">
+                    All Lights
+                  </button>
+                  <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="all_fans" onClick="allSwitch(1)">
+                    All Fans
+                  </button>
+                  <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="everything" onClick="allSwitch(2)">
+                    Everything
+                  </button>
+                </div>
+                <div class="input-field hovered col-3 ro-4 hidden" id="LightControl">
+                  <div class="description-title-text">Lights</div>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="light_1" onClick="changeSwitchState(1)">
+                      Light 1
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="light_2" onClick="changeSwitchState(5)">
+                      Light 2
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="light_3" onClick="changeSwitchState(4)">
+                      Light 3
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="light_4" onClick="changeSwitchState(2)">
+                      Light 4
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="light_5" onClick="changeSwitchState(0)">
+                      Middle
+                    </button>
+                  </div>
+                  <div class="input-field hovered col-3 ro-2 hidden" id="FanControl">
+                    <div class="description-title-text">Fans</div>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="fan_1" onClick="changeSwitchState(3)">
+                      Fan 1
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="fan_2" onClick="changeSwitchState(7)">
+                      Fan 2
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="fan_3" onClick="changeSwitchState(6)">
+                      Fan 3
+                    </button>
+                  </div>
+                  <div class="input-field hovered col-3 ro-2 hidden" id="DoorControl">
+                    <div class="description-title-text">Door</div>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="unlock_door">
+                      Unlock Door
+                    </button>
+                  </div>
+                  <div class="input-field hovered col-3 ro-2 ">
+                    <div class="description-title-text">Logout</div>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="logout">
+                      Logout
+                    </button>
+                  </div>
+                  <div class="input-field hovered col-3 ro-4 hidden" style="height:210px" id="CardControl">
+                    <div class="description-title-text">Add Card</div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="card_owner">
+                      <label class="mdl-textfield__label" for="card_owner">Card Owner</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="clearance">
+                      <label class="mdl-textfield__label" for="cleanance">Clearance Level</label>
+                    </div>
+                    <div style="width:100%;text-align:right">
+                      <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="addcard">
+                        Add Card
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-field hovered col-3 ro-2 hidden" id="ClearanceControl">
+                    <div class="description-title-text">Clearance</div>
+                    <input class="mdl-slider mdl-js-slider" type="range"
+                      min="-10" max="10" value="0" tabindex="0">
+                  </div>
+                  <div class="input-field hovered col-3 ro-2 hidden" id="CrashControl">
+                    <div class="description-title-text">Crash?!</div>
+                    <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="crash_system">
+                      CRASH!
+                    </button>
+                  </div>
+                  <div class="input-field  hovered col-3 ro-4" id="DoorLog">
+                    <div class="description-title-text">Door Access Log</div>
+                    <table style="width: 100%" id="list1table">
+                       <thead>
+                          <tr>
+                             <th>ID</th>
+                             <th>Name</th>
+                             <th>Time</th>
+                           </tr>
+                       </thead>
+                       <tbody id="tbody">
+                       </tbody>
+                    </table>
+                  </div>
+                  <div class="input-field  hovered col-3 ro-6" id="CreateAccount">
+                    <div class="description-title-text">Create Account</div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="newaccemail">
+                      <label class="mdl-textfield__label" for="newaccemail">Email</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="newaccpassword">
+                      <label class="mdl-textfield__label" for="newaccpassword">Password</label>
+                    </div>
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="IotControlSelect">
+                      <input type="checkbox" id="IotControlSelect" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Iot Control</span>
+                    </label>
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="DoorControlSelect">
+                      <input type="checkbox" id="DoorControlSelect" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Door Control</span>
+                    </label>
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="CardControlSelect">
+                      <input type="checkbox" id="CardControlSelect" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Add Card Control</span>
+                    </label>
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="CrashControlSelect">
+                      <input type="checkbox" id="CrashControlSelect" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Crash Control</span>
+                    </label>
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="DoorLogSelect">
+                      <input type="checkbox" id="DoorLogSelect" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Door Log</span>
+                    </label>
+                    <div style="width:100%;text-align:right">
+                      <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="addaccount">
+                        Add Card
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-field hovered col-3 ro-4" id="CardOwnerControl">
+                    <div class="description-title-text">Card Owner Control</div>
+                    <table style="width: 100%" id="list2table">
+                       <thead>
+                          <tr>
+                             <th>ID</th>
+                             <th>Name</th>
+                             <th>Active</th>
+                           </tr>
+                       </thead>
+                       <tbody id="tbody2">
+                       </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="login-container">
+                  <div id="login-field" class="input-field  hovered" style="width:300px;display:inline-block">
+                    <div class="description-title-text">Let's Log In!</div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="email">
+                      <label class="mdl-textfield__label" for="email">Email</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="password" id="password">
+                      <label class="mdl-textfield__label" for="password">Password</label>
+                    </div>
+                    <div style="width:100%;text-align:right">
+                      <button class="mdl-button mdl-js-button mdl-button--primary flat-button" id="lets_go">
+                        LETS GO!
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div id="snackbar"></div>
+    </body>
+</html>

@@ -1,0 +1,6 @@
+*.csv 
+node_modules/
+
+.foreverignore
+*.log
+*.swp

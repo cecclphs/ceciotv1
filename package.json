@@ -1,0 +1,43 @@
+{
+  "name": "CEC_Door_Lock_System",
+  "version": "0.1-alpha.1",
+  "description": "Door Lock Controller and Switch Control System for Creative Electronics Club",
+  "homepage": "https://clphscec.com",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "Chew Tzi Hwee",
+    "email": "chewtzihwee@gmail.com",
+    "url": "https://clphscec.com"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "csv": "^5.1.1",
+    "csv-append": "^1.0.0",
+    "csv-write-stream": "^2.0.0",
+    "events": "^3.0.0",
+    "express": "^4.16.4",
+    "express-ip": "^1.0.3",
+    "fast-csv": "^2.5.0",
+    "firebase": "^5.8.2",
+    "firebase-admin": "^8.8.0",
+    "googleapis": "^27.0.0",
+    "i2c-bus": "^4.0.7",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
+    "noble": "^1.9.1",
+    "node-beacon-scanner": "^0.2.2",
+    "nodemailer": "^6.1.1",
+    "oled-font-5x7": "^1.0.3",
+    "oled-i2c-bus": "^1.0.11",
+    "onoff": "^3.2.2",
+    "reconnecting-websocket": "^4.1.10",
+    "request": "^2.88.0",
+    "serialport": "^7.1.4",
+    "socket.io-client": "^2.2.0",
+    "systeminformation": "^4.0.8",
+    "util": "^0.12.0",
+    "ws": "^6.1.3",
+    "ws-reconnect": "^1.0.6"
+  }
+}
